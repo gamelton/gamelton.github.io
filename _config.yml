@@ -1,1 +1,17 @@
 theme: jekyll-theme-cayman
+timezone: Europe/Moscow
+title: gamelton's blog
+navbar-links:
+  Resources:
+    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
+    - Learn markdown: "http://www.markdowntutorial.com/"
+  Author's home: "http://deanattali.com"
+social-network-links:
+  rss: true
+  wordpress: gamelton
+share-links-active:
+  twitter: true
+  facebook: true
+  linkedin: true
+permalink: /:year-:month-:day-:title/
+paginate: 5
