@@ -48,3 +48,11 @@ You could configure Event Log to store every such binding:
 You may need to increase Maximum log size in order to accomodate all events comming to it after you enabled Active Directory Diagnostic Event Logging.
 
 [Repository](https://github.com/gamelton/Unencrypted-LDAP-Binds)
+
+# Get LDAPS server certificate
+When you don't know which certificate Active Directory sends when you LDAPS connect to it. There are some options, like running network packet capture. Or you could use OpenSSL client to grab it from the handshake. Just connect to Domain Controller on LDAPS port.
+
+> openssl s_client -connect domain-controller.domain:636
+1. Part of the output of this file will be the Base-64 encoded .cer file that was presented for LDAPS.
+1. Just cut and paste into notepad beginning at "--Begin Certificate--" through "---End Certificate---"  and save as a .cer
+1. Double-click on the certificate file and you will now be viewing the certificate presented for LDAPS.
