@@ -57,3 +57,7 @@ When you don't know which certificate Active Directory sends when you LDAPS conn
 1. Part of the output of this file will be the Base-64 encoded .cer file that was presented for LDAPS.
 1. Just cut and paste into notepad beginning at "--Begin Certificate--" through "---End Certificate---"  and save as a .cer
 1. Double-click on the certificate file and you will now be viewing the certificate presented for LDAPS.
+
+# SCOM monitor file modification
+
+![wbem](/images/wbem.PNG)
