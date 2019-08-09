@@ -60,21 +60,25 @@ When you don't know which certificate Active Directory sends when you LDAPS conn
 
 # SCOM monitor file modification
 
+WMI allows you to check for the events like file modification. You could run a notification query that gets result when an event happens. You could monitor different evetns like program run, or file modified. SCOM has WMI event subsystem that can help monitor such events.
+
 You could test your WMI query
 1. Run wbemtest.exe
 1. Connect to root\cimv2
 1. Push notification query
 1. Enter your WMI query and press Apply
-![wbem](/images/wbem.PNG)
+   F.x. monitor for program run
+   > SELECT * FROM __InstanceCreationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_Process' AND TargetInstance.Name = 'notepad.exe'
+   ![wbem](/images/wbem-notepad-edited.png)
 
 Create SCOM monitor:
 1. Authoring-> Management Pack Objects -> Monitors
 1. Create a Monitor -> Unit Monitor
 1. Select the type of monitor -> WMI Events -> Simple Event Detection -> Manual Reset
-![SCOM WMI Unit Monitor](/images/scom-wmi-unit-monitor.PNG)
+   ![SCOM WMI Unit Monitor](/images/scom-wmi-unit-monitor.PNG)
 1. Select management pack -> Overrides management pack.
 1. Next.
-1. Name -> service monitor, Monitor target -> Windows computer, Parent monitor -> Availability. Uncheck monitor is enabled. We'll enable monitor only for specific group of computers.
+1. Name -> file modification monitor, Monitor target -> Windows computer, Parent monitor -> Availability. Uncheck monitor is enabled. We'll enable monitor only for specific group of computers.
 1. Next.
 1. Type WMI Namespace `root\cimv2`. And the query.
 1. Next.
