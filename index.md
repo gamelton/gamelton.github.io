@@ -76,8 +76,9 @@ Create SCOM monitor:
 1. Authoring-> Management Pack Objects -> Monitors
 1. Create a Monitor -> Unit Monitor
 1. Select the type of monitor -> WMI Events -> Simple Event Detection -> Manual Reset
+
    ![SCOM WMI Unit Monitor](/images/scom-wmi-unit-monitor.PNG)
-   
+
 1. Select management pack -> Overrides management pack.
 1. Next.
 1. Name -> file modification monitor, Monitor target -> Windows computer, Parent monitor -> Availability. Uncheck monitor is enabled. We'll enable monitor only for specific group of computers.
