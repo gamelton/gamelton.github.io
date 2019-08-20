@@ -107,9 +107,10 @@ More info https://docs.microsoft.com/en-us/previous-versions/technet-magazine/cc
 [Repository](https://github.com/gamelton/WMI-File-Modification)
 
 # Exchange retention policy for resource mailbox
-When you use resouce mailbox you can set it to auto accept all incoming meeting invitations. It stores accept answer in Sent Items folder. And it stores checked invittation in Deleted Items folders. Which piles up as usually resource mailbox isn't manually accessed. So to auto deletes items in these folders we could set up Retention Policy. Excample commands run in Exchange Shell.
-1. First we create two tags: for Sent and for Deleted items.
+When you use resouce mailbox you can set it to auto accept all incoming meeting invitations. It stores accepted answer in Sent Items folder. And it stores checked invitation in Deleted Items folders. Which piles up as usually resource mailbox isn't manually accessed. So to auto delete items in these folders we could set up Retention Policy. Example commands run in Exchange Shell.
+1. First we create two Retention Policy Tags(RPT): for Sent and for Deleted items.
    > New-RetentionPolicyTag "RPT-PermanentlyDelete-DeletedItems" -Type DeletedItems -RetentionEnabled $true -AgeLimitForRetention 1 -RetentionAction PermanentlyDelete
+   
    > New-RetentionPolicyTag "RPT-PermanentlyDelete-SentItems" -Type SentItems -RetentionEnabled $true -AgeLimitForRetention 1 -RetentionAction PermanentlyDelete
 1. Then we link them to Retention Policy. 
    > New-RetentionPolicy "RP-MeetingRooms" -RetentionPolicyTagLinks "RPT-PermanentlyDelete-DeletedItems","RPT-PermanentlyDelete-SentItems"
