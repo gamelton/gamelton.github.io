@@ -105,3 +105,14 @@ The wizard for creating a WMI Event monitor/rule actually won't let you specify 
 More info https://docs.microsoft.com/en-us/previous-versions/technet-magazine/cc160917(v=msdn.10)
 
 [Repository](https://github.com/gamelton/WMI-File-Modification)
+
+# Exchange retention policy for resource mailbox
+When you use resouce mailbox you can set it to auto accept all incoming meeting invitations. It stores accept answer in Sent Items folder. And it stores checked invittation in Deleted Items folders. Which piles up as usually resource mailbox isn't manually accessed. So to auto deletes items in these folders we could set up Retention Policy. Excample commands run in Exchange Shell.
+1. First we create two tags: for Sent and for Deleted items.
+   > New-RetentionPolicyTag "RPT-PermanentlyDelete-DeletedItems" -Type DeletedItems -RetentionEnabled $true -AgeLimitForRetention 1 -RetentionAction PermanentlyDelete
+   > New-RetentionPolicyTag "RPT-PermanentlyDelete-SentItems" -Type SentItems -RetentionEnabled $true -AgeLimitForRetention 1 -RetentionAction PermanentlyDelete
+1. Then we link them to Retention Policy. 
+   > New-RetentionPolicy "RP-MeetingRooms" -RetentionPolicyTagLinks "RPT-PermanentlyDelete-DeletedItems","RPT-PermanentlyDelete-SentItems"
+1. Then we apply the policy to Resource Mailbox.
+   > Set-Mailbox "meetingroom" –RetentionPolicy "RP-MeetingRooms"
+1. After some time Managed Folder Assistant (MFA) runs and tags all messages in these folders. Those expired got Permanently Deleted (you could change this in `RetentionAction` parameter). 
