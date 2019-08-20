@@ -9,3 +9,5 @@ share-links-active:
   linkedin: true
 permalink: /:year-:month-:day-:title/
 paginate: 5
+plugins:
+  - jekyll-feed
