@@ -28,7 +28,9 @@ Preparation:
 1. Register application for you Azure AD at https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview
    1. Get Application (client) ID from Application properties
    1. Make sure to check under app's Authentication Default client type Yes (Application is public client)
-   1. Make sure to grant API permission of AuditLog.Read.All to the application 
+   ![AzureAD App Public Client](/images/azuread-app-registration-01.PNG)
+   1. Make sure to grant API permission of AuditLog.Read.All to the application
+   ![AzureAD App API Permission](/images/azuread-app-registration-02.PNG)
 
 [Repository](https://github.com/gamelton/Azure-AD-Failed-Sign-ins)
 
