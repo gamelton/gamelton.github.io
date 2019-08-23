@@ -135,6 +135,9 @@ When client closes the conneciton, TCP packet with RST flag is sent. By default 
 # Juniper JunOS application traffic inspection
 Juniper checks traffic on well-known port for compliance with protocol that is expected to flow on that port. If you send one protocol over port reserved for another protocol, Juniper will block it. F.x. TCP port 2000 is used by Cisco SCCP skinny protocol. If you send HTTP traffic over TCP 2000 it's not passed. You could disable protocol traffic inspection (ALG) per protocol.
 > set security alg sccp disable
+On Cisco router the commands should be
+> no ip inspect name myfw skinny
+> no ip nat service skinny tcp port 2000
 
 # Sort Powershell object properties
 By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort AD user object properties by their name.
