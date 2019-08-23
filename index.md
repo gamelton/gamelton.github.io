@@ -129,9 +129,13 @@ DNS names (this also includes A/AAAA) may only contain `[0-9]`, `[a-z]`, `-`, so
 More info https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
 
 # Juniper JunOS port reset
-When client closes the conneciton, TCP packer with RST flag is sent. By default JunOS wait 2 seconds before port is closed. This could be an issue when cilent extablish new TCP connection from the same source port, that's marked for closing by Juniper. The following configuration command will force JunOS to close port instantly
+When client closes the conneciton, TCP packer with RST flag is sent. By default JunOS waits 2 seconds before port is closed. This could be an issue when cilent extablishes new TCP connection from the same source port, that's marked for closing by Juniper. The following configuration command will force JunOS to close port instantly
 > set security flow tcp-session rst-invalidate-session
 
 # Juniper JunOS application traffic inspection
 Juniper checks traffic on well-known port for compliance with protocol that is expected to flow on that port. If you send one protocol over port reserved for another protocol, Juniper will block it. F.x. TCP port 2000 is used by Cisco SCCP skinny protocol. If you send HTTP traffic over TCP 2000 it's not passed. You could disable protocol traffic inspection (ALG) per protocol.
 > set security alg sccp disable
+
+# Sort Powershell object properties
+By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort PS object properties by their name.
+> $(Get-ADUser -Identity user -Properties \*).PsObject.Properties |  select Name, Value | sort Name
