@@ -123,3 +123,15 @@ When you use resouce mailbox you can set it to auto accept all incoming meeting 
 1. Then we apply the policy to Resource Mailbox.
    > Set-Mailbox "meetingroom" –RetentionPolicy "RP-MeetingRooms"
 1. After some time Managed Folder Assistant (MFA) runs and tags all messages in these folders. Those expired got Permanently Deleted (you could change this in `RetentionAction` parameter). 
+
+# DNS Host name restriction
+DNS names (this also includes A/AAAA) may only contain `[0-9]`, `[a-z]`, `-`, so the underscore is not valid. Note that a TXT record is not a hostname, and this restriction doesn't apply for it. And one last edit: - may not be used as the first character either.
+More info https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
+
+# Juniper JunOS port reset
+When client closes the conneciton, TCP packer with RST flag is sent. By default JunOS wait 2 seconds before port is closed. This could be an issue when cilent extablish new TCP connection from the same source port, that's marked for closing by Juniper. The following configuration command will force JunOS to close port instantly
+> set security flow tcp-session rst-invalidate-session
+
+# Juniper JunOS application traffic inspection
+Juniper checks traffic on well-known port for compliance with protocol that is expected to flow on that port. If you send one protocol over port reserved for another protocol, Juniper will block it. F.x. TCP port 2000 is used by Cisco SCCP skinny protocol. If you send HTTP traffic over TCP 2000 it's not passed. You could disable protocol traffic inspection (ALG) per protocol.
+> set security alg sccp disable
