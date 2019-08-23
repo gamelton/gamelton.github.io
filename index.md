@@ -125,11 +125,11 @@ When you use resouce mailbox you can set it to auto accept all incoming meeting 
 1. After some time Managed Folder Assistant (MFA) runs and tags all messages in these folders. Those expired got Permanently Deleted (you could change this in `RetentionAction` parameter). 
 
 # DNS Host name restriction
-DNS names (this also includes A/AAAA) may only contain `[0-9]`, `[a-z]`, `-`, so the underscore is not valid. Note that a TXT record is not a hostname, and this restriction doesn't apply for it. And one last edit: - may not be used as the first character either.
+DNS names (this also includes A/AAAA) may only contain `[0-9]`, `[a-z]`, `-`, so the underscore is not valid. Note that a TXT record is not a hostname, and this restriction doesn't apply for it. And one last edit: may not be used as the first character either.
 More info https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames
 
 # Juniper JunOS port reset
-When client closes the conneciton, TCP packer with RST flag is sent. By default JunOS waits 2 seconds before port is closed. This could be an issue when cilent extablishes new TCP connection from the same source port, that's marked for closing by Juniper. The following configuration command will force JunOS to close port instantly
+When client closes the conneciton, TCP packet with RST flag is sent. By default JunOS waits 2 seconds before the port is closed. This could be an issue when cilent establishes new TCP connection from the same source port, that's marked for closing by Juniper. The following configuration command will force JunOS to close port instantly
 > set security flow tcp-session rst-invalidate-session
 
 # Juniper JunOS application traffic inspection
@@ -137,5 +137,5 @@ Juniper checks traffic on well-known port for compliance with protocol that is e
 > set security alg sccp disable
 
 # Sort Powershell object properties
-By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort PS object properties by their name.
-> $(Get-ADUser -Identity user -Properties \*).PsObject.Properties |  select Name, Value | sort Name
+By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort AD user object properties by their name.
+> $(Get-ADUser -Identity user -Properties \*).PsObject.Properties \|  select Name, Value \| sort Name
