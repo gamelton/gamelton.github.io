@@ -142,3 +142,10 @@ On Cisco router the commands should be
 # Sort Powershell object properties
 By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort AD user object properties by their name.
 > $(Get-ADUser -Identity user -Properties \*).PsObject.Properties \|  select Name, Value \| sort Name
+
+# SSL verification mode
+Some services allow configuration of how certificates are verified. This is due to the multiple purposes of TLS: authentication and encryption. Authentication means you trust host you connect to. Encryption means messages are not sent in clear text. If TLS connection is made between trusted parties in secured network it might be handy to disalbe authentication part. This is due to major use of self-signed certificates that stops connection establishment if certificate could not be verified.
+General mode description (taken from Elasticsearch doc):
+1. `full`, which verifies that the provided certificate is signed by a trusted authority (CA) and also verifies that the server’s hostname (or IP address) matches the names identified within the certificate.
+1. `certificate`, which verifies that the provided certificate is signed by a trusted authority (CA), but does not perform any hostname verification.
+1. `none`, which performs no verification of the server’s certificate.
