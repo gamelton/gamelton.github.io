@@ -135,16 +135,17 @@ When client closes the conneciton, TCP packet with RST flag is sent. By default 
 # Juniper JunOS application traffic inspection
 Juniper checks traffic on well-known port for compliance with protocol that is expected to flow on that port. If you send one protocol over port reserved for another protocol, Juniper will block it. F.x. TCP port 2000 is used by Cisco SCCP skinny protocol. If you send HTTP traffic over TCP 2000 it's not passed. You could disable protocol traffic inspection (ALG) per protocol.
 > set security alg sccp disable
+
 On Cisco router the commands should be
 > no ip inspect name myfw skinny
 > no ip nat service skinny tcp port 2000
 
 # Sort Powershell object properties
-By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. This is example command to sort AD user object properties by their name.
+By default Powershell doesn't sort object properties. Which is confusing when object has a lot of properties. And you look trough all of them. This is an example command to sort AD user object properties by their name.
 > $(Get-ADUser -Identity user -Properties \*).PsObject.Properties \|  select Name, Value \| sort Name
 
 # SSL verification mode
-Some services allow configuration of how certificates are verified. This is due to the multiple purposes of TLS: authentication and encryption. Authentication means you trust host you connect to. Encryption means messages are not sent in clear text. If TLS connection is made between trusted parties in secured network it might be handy to disalbe authentication part. This is due to major use of self-signed certificates that stops connection establishment if certificate could not be verified.
+Some network services allow configuration of how certificates are verified. This is due to the multiple purposes of TLS: authentication and encryption. Authentication means you trust host you connect to. Encryption means messages are not sent in clear text. If TLS connection is made between trusted parties in secured network it might be handy to disalbe authentication part. This is due to major use of self-signed certificates that stops connection establishment if certificate could not be verified.
 General mode description (taken from Elasticsearch doc):
 1. `full`, which verifies that the provided certificate is signed by a trusted authority (CA) and also verifies that the server’s hostname (or IP address) matches the names identified within the certificate.
 1. `certificate`, which verifies that the provided certificate is signed by a trusted authority (CA), but does not perform any hostname verification.
