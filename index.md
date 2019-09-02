@@ -150,3 +150,11 @@ General mode description (taken from Elasticsearch doc):
 1. `full`, which verifies that the provided certificate is signed by a trusted authority (CA) and also verifies that the server’s hostname (or IP address) matches the names identified within the certificate.
 1. `certificate`, which verifies that the provided certificate is signed by a trusted authority (CA), but does not perform any hostname verification.
 1. `none`, which performs no verification of the server’s certificate.
+
+# MBAM Recovery Key SQL query
+MBAM is Bitlocker drive encryption solution. It allows you to retrieve Recovery Key from web portal. It requires you to provide Key ID. That's not always optimal in case you need to provide recovery key but don't have access to the machine. You could run SQL script against `MBAM Recovery and Hardware` databse. This example return Recovery Key for machine with hostname `machinename`.
+>SELECT M.\[Id],M.\[Name],MV.\[VolumeId],K.\[RecoveryKeyId],K.\[RecoveryKey]
+>FROM \[RecoveryAndHardwareCore].\[Machines] M
+>LEFT JOIN \[RecoveryAndHardwareCore].\[Machines_Volumes] MV ON M.\[Id]=MV.\[MachineId]
+>LEFT JOIN \[RecoveryAndHardwareCore].\[Keys] K ON MV.\[VolumeId]=K.\[VolumeId]
+>WHERE M.\[Name] like '%machinename%'
