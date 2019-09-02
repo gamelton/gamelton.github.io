@@ -138,6 +138,7 @@ Juniper checks traffic on well-known port for compliance with protocol that is e
 
 On Cisco router the commands should be
 > no ip inspect name myfw skinny
+
 > no ip nat service skinny tcp port 2000
 
 # Sort Powershell object properties
@@ -154,7 +155,11 @@ General mode description (taken from Elasticsearch doc):
 # MBAM Recovery Key SQL query
 MBAM is Bitlocker drive encryption solution. It allows you to retrieve Recovery Key from web portal. It requires you to provide Key ID. That's not always optimal in case you need to provide recovery key but don't have access to the machine. You could run SQL script against `MBAM Recovery and Hardware` databse. This example return Recovery Key for machine with hostname `machinename`.
 >SELECT M.\[Id],M.\[Name],MV.\[VolumeId],K.\[RecoveryKeyId],K.\[RecoveryKey]
+
 >FROM \[RecoveryAndHardwareCore].\[Machines] M
+
 >LEFT JOIN \[RecoveryAndHardwareCore].\[Machines_Volumes] MV ON M.\[Id]=MV.\[MachineId]
+
 >LEFT JOIN \[RecoveryAndHardwareCore].\[Keys] K ON MV.\[VolumeId]=K.\[VolumeId]
+
 >WHERE M.\[Name] like '%machinename%'
