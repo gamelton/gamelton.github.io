@@ -49,7 +49,8 @@ Get Azure Active Directory failed sign-ins and security alerts from Graph API.
 Three querries. You could change them and specific details or add new.
 1. Query for [security alerts](https://docs.microsoft.com/en-us/graph/api/alert-list) over last week.
 1. Query for [incorrect login or password sign-ins](https://docs.microsoft.com/en-us/graph/api/signin-list) over last week. Filter for specifit Event ID of **50126** that's `Invalid username or password`.
-1. Query for sign-ins with atRisk state over last week. This might include same events as first query.
+1. Query for sign-ins with `atRisk` state over last week. This might include same events as first query.
+
 Put each query's result into html file. The path is absolute.
 Combine files and send them via email.
 This is run as Scheduled Job once a week.
