@@ -33,8 +33,8 @@ Preparation:
    1. Make sure to grant API permission to the application
       1. AuditLog.Read.All 
       1. Directory.Read.All
-   Note: You would need to press grant admin consent button to apply for the organization.
-   ![AzureAD App API Permission](/images/azuread-app-registration-02.PNG)
+      Note: You would need to press grant admin consent button to apply for the organization.
+      ![AzureAD App API Permission](/images/azuread-app-registration-02.PNG)
 1. Edit the script and supply your
    1. `TENANTID` and `CLIENTID`for Tenant (Authority) and Application (Client)
    1. `AZUREADUSERLOGIN` and `AZUREADUSERPASSWORD` for Azure AD User with correct role
