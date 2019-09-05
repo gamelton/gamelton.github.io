@@ -18,7 +18,7 @@ Query Microsoft Graph API for incorrect login or password sign-ins. We filter fo
 Prerequisites:
 1. Azure Active Directory premium 1 (P1) license
 1. Azure AD User has Report Reader directory role
-1. Application right Read all audit log data
+1. Application has specific API permission
 1. ADAL v3 
 
 Preparation:
@@ -30,7 +30,10 @@ Preparation:
    1. Get Application (Client) ID from Application properties
    1. Make sure to check under app's Authentication Default client type Yes (Application is public client)
    ![AzureAD App Public Client](/images/azuread-app-registration-01.PNG)
-   1. Make sure to grant API permission of AuditLog.Read.All to the application
+   1. Make sure to grant API permission to the application
+      1. AuditLog.Read.All 
+      1. Directory.Read.All
+   Note: You would need to press grant admin consent button to apply for the organization.
    ![AzureAD App API Permission](/images/azuread-app-registration-02.PNG)
 1. Edit the script and supply your
    1. `TENANTID` and `CLIENTID`for Tenant (Authority) and Application (Client)
