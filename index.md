@@ -66,10 +66,14 @@ Preparation:
       1. AuditLog.Read.All 
       1. Directory.Read.All
       1. SecurityEvents.Read.All
+
       Note: You would need to press grant admin consent button to apply for the organization.
+
    1. Generate application secret.
+
    Note: You should save it immediately as it won't be shown again
    ![AzureAD App Secret](/images/azuread-app-registration-03..PNG)
+
 1. Edit the script and supply your
    1. `TENANTID` for Tenant (Authority)
    1. `CLIENTID` and `APPPASSWORD` for Application (Client) ID and secret
