@@ -57,6 +57,7 @@ Three querries. You could change them and specific details or add new.
 Requirements:
 1. Azure Active Directory premium 1 (P1) license
 1. Application has specific API permission
+1. Application has secret (password)
 
 Preparation:
 1. Get Tenant (Authority) ID that is Directory ID from Azure AD
@@ -68,9 +69,12 @@ Preparation:
       1. SecurityEvents.Read.All
    
    Note: You would need to press grant admin consent button to apply for the organization.
+   1. Generate application secret.
+   Note: You should save it immediately as it won't be shown again
+   ![AzureAD App Secret](/images/azuread-app-registration-03.PNG)
 1. Edit the script and supply your
    1. `TENANTID` for Tenant (Authority)
-   1. `CLIENTID` and `APPPASSWORD` for Application (Client) secret
+   1. `CLIENTID` and `APPPASSWORD` for Application (Client) ID and secret
    1. `AZUREADUSERLOGIN` and `AZUREADUSERPASSWORD` for Azure AD User with correct role
    1. `SECURITYALERTS\PATH.HTML`, `FAILEDLOGIN\PATH.HTML` and `LOGINWITHATRISK\PATH.HTML`for HTML files.
    1. `FROMEMAIL@ADDRESS`, `TOEMAIL@ADDRESS` and `MAIL.SERVER` to send generated email
