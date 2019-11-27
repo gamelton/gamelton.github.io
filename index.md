@@ -208,3 +208,9 @@ MBAM is Bitlocker drive encryption solution. It allows you to retrieve Recovery 
 >LEFT JOIN \[RecoveryAndHardwareCore].\[Keys] K ON MV.\[VolumeId]=K.\[VolumeId]
 
 >WHERE M.\[Name] like '%machinename%'
+
+# Two types of email address
+An email message may contain multiple originator, or sender, addresses. 
+1. `Mail From` address: Identifies the sender and specifies where to send return notices if any problems occur with the delivery of the message, such as non-delivery notices. This appears in the envelope portion of an email message and **is not usually displayed** by your email application. This is sometimes called the 5321.MailFrom address or the reverse-path address.
+1. `From` address: The address displayed as the From address by your mail application. This address identifies the author of the email. That is, the mailbox of the person or system responsible for writing the message. This is sometimes called the 5322.From address.
+
