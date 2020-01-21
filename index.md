@@ -214,3 +214,13 @@ An email message may contain multiple originator, or sender, addresses.
 1. `Mail From` address: Identifies the sender and specifies where to send return notices if any problems occur with the delivery of the message, such as non-delivery notices. This appears in the envelope portion of an email message and **is not usually displayed** by your email application. This is sometimes called the 5321.MailFrom address or the reverse-path address.
 1. `From` address: The address displayed as the From address by your mail application. This address identifies the author of the email. That is, the mailbox of the person or system responsible for writing the message. This is sometimes called the 5322.From address.
 
+# Change MS Teams email address
+If you have Azure AD Connector to sync your on-premise users and groups to Office 365 cloud. Sometimes you create on-premise group that has the same email address as Teams/Office365 cloud group. In that case you'll get a sync error of `Duplicate Attribute Error`. You could change email address of the cloud group to resolve the sync issue.
+Connect to Exchange Online using [Exchange PowerShell V2 module](https://aka.ms/exops-docs)
+
+>Set-UnifiedGroup -Identity "Cloud group name" -EmailAddresses: @{Add ="newcloudgroup@email.address"}
+
+>Set-UnifiedGroup -Identity "Cloud group name" -PrimarySmtpAddress "newcloudgroup@email.address"
+
+>Set-UnifiedGroup -Identity "Cloud group name" -EmailAddresses: @{Remove="oldcloudgroup@email.address"}
+
