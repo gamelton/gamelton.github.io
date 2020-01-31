@@ -224,3 +224,21 @@ Connect to Exchange Online using [Exchange PowerShell V2 module](https://aka.ms/
 
 >Set-UnifiedGroup -Identity "Cloud group name" -EmailAddresses: @{Remove="oldcloudgroup@email.address"}
 
+# Juniper site-to-site VPN identification
+With IPSEC vpn there is always a proxy-id pair sent.  This is part of the standard.
+When you don't explicitly configure one on the SRX it will us 0.0.0.0/0 to 0.0.0.0/0 meaning any subnet can be sent or recieved on the tunnel.
+
+This is the recommended and simpliest path.
+But most other vendors do not allow this open proxy pair.  So we must configure explict pair(s) for compatibility and for the tunnel to come up.
+
+Unfortunately, the proxy id method only supports a single pair.  If you have multiple pairs your only option is either policy vpn or traffic selectors.
+
+* `proxy id` allows only one pair
+* `traffic selectors` allow more that one pair
+
+> security ipsec vpn ike proxy-identity \[local | remote\]  
+> security ipsec vpn traffic-selector
+
+
+
+
