@@ -239,6 +239,13 @@ Unfortunately, the proxy id method only supports a single pair.  If you have mul
 > security ipsec vpn ike proxy-identity \[local | remote\]  
 > security ipsec vpn traffic-selector
 
+# The built-in Administrator account
+The local Administrator account (RID -500) is disabled by default on Windows 10 but not on Windows Server. When installing Windows 10, Windows Setup prompts you for a new account which becomes the primary administrative account for the computer. By contrast, Windows Server’s setup prompts you for a new password for the Administrator account.
+The main differences between the built-in -500 Administrator account (when enabled) and a custom administrative local account are
+1. the -500 account is not subject to account lockout, account expiration, password expiration, or logon hours
+1. the -500 account cannot be removed from the Administrators group
+1. by default the -500 account always runs with full administrative rights without UAC prompts, including over the network. This third difference can be removed by enabling the security option, “User Account Control: Admin Approval Mode for the Built-in Administrator account.”
+
 
 
 
