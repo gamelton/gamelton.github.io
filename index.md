@@ -247,6 +247,19 @@ The main differences between the built-in -500 Administrator account (when enabl
 1. the -500 account cannot be removed from the Administrators group
 1. by default the -500 account always runs with full administrative rights without UAC prompts, including over the network. This third difference can be removed by enabling the security option, “User Account Control: Admin Approval Mode for the Built-in Administrator account.”
 
+# Network route distance and pririty
+Each network route has its distance and priority. Usually put in brackets.
+
+`0.0.0.0/0 [5/0] via 192.168.1.1`
+
+If multiple routes exist for the same destination, only one route is selected into routing table.
+
+The rules for preferred route:
+* If multiple routes to the same destination have the same priority but different distances, the route with the lowest distance is used.
+* If multiple routes to the same destination have the same distance but different priorities, the route with the lowest priority is used.
+* Distance takes precedence over priority. If multiple routes to the same destination have different distances and different priorities, the route with the lowest distance is always used even if it has the highest priority.
+
+If two routes have the same administrative distance and the same priority, then they are equal cost multipath (ECMP) routes. Then you should configure load balancing with ECMP routes.
 
 
 
