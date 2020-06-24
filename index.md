@@ -261,5 +261,12 @@ The rules for preferred route:
 
 If two routes have the same administrative distance and the same priority, then they are equal cost multipath (ECMP) routes. Then you should configure load balancing with ECMP routes.
 
+# ulimit recommendation for Solr
+These four settings in particular are important to have set very high, unlimited if possible.
 
+* max processes (`ulimit -u`): 65,000 is the recommended minimum.
+* file handles (`ulimit -n`): 65,000 is the recommended minimum. All the files used by all replicas have their file handles open at once so this can grow quite large.
+* virtual memory (`ulimit -v`): Set to unlimited. This is used to by MMapping the indexes.
+* max memory size (`ulimit -m`): Also used by MMap, set to unlimited.
+* If your system supports it, `sysctl vm.max_map_count`, should be set to unlimited as well.
 
