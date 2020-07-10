@@ -276,49 +276,45 @@ These four settings in particular are important to have set very high, unlimited
 # Active DIrectory Certificate Services notes
 Couple of notes on certificate properties
 
-'NewRequest'
+`NewRequest`
 
-
-
-    
-* 'Exportable'
+* `Exportable`
     If private key could be exported.
     
-* 'Subject'
+* `Subject`
     For TLS certificated the 'CN=' part is optional, because they use SAN. So you could any test to it.
     
-* 'MachineKeySet'
+* `MachineKeySet`
     Save certificate to Machine certificate store
     
-* 'KeySpec' 
+* `KeySpec`
     Most of the time you needd Key Exchange
-    * 'AT_KEYEXCHANGE \(or KeySpec=1\)' RSA key that can be used for signing and decryption
-    * 'AT_SIGNATURE \(or KeySpec=2\)' RSA signature only key
+    * `AT\_KEYEXCHANGE \(or KeySpec=1\)` RSA key that can be used for signing and decryption
+    * `AT\_SIGNATURE \(or KeySpec=2\)` RSA signature only key
     
-'BasicConstraintsExtension'
+`BasicConstraintsExtension`
 
 * `PathLength`
     For Certificate Authority certificate this is Key Constraint. It sets how many levels below CA allowed to issue CA certificate. That is if the second level CA is allowed to issue certificate to other CA. That restricts number of CA levels.
     
 'ExtendedKeyUsageExtension'
-* 'OID' = 1.3.6.1.5.5.7.3.1 ; Server Authentication
-* 'OID' = 1.3.6.1.5.5.7.3.2 ; Client Authentication
+* `OID` = 1.3.6.1.5.5.7.3.1 ; Server Authentication
+* `OID` = 1.3.6.1.5.5.7.3.2 ; Client Authentication
 
 
     
-'Extensions'
+`Extensions`
 
 * `Subject Alternative Name`
     In Microsoft SAN could be changed in two ways:
     * Certificate Attributes. For this you issue command on CA that enables appending SAN to certificate request. This is not secure. Because it works on CA server scope for all certificate issued by that CA. And because the requested certificate is not the same as issued certificate. This works by geting certificate request in AD CS Web Enrollement page and fill in Attributes field what SAN you want.
     * Request Properties. This is prefferebale. But this requires using 'policy inf' file. That way you create certificate request with included SAN. So no need to additinally add anything to that request later.
     
-* '\_continue\_' = "DNS=www.example.ord&"
-* '\_continue\_' = "IPAddress=1.1.1.1"
+* `\_continue\_` = "DNS=www.example.ord&"
+* `\_continue\_` = "IPAddress=1.1.1.1"
 
-     Note the ampersand (&), it should be appended inside quotes to each SAN  except the last
+     Note the ampersand \(&\), it should be appended inside quotes to each SAN  except the last
  
-
  
 > certutil -store -v My
     
