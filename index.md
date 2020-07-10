@@ -270,3 +270,14 @@ These four settings in particular are important to have set very high, unlimited
 * max memory size (`ulimit -m`): Also used by MMap, set to unlimited.
 * If your system supports it, `sysctl vm.max_map_count`, should be set to unlimited as well.
 
+# Active DIrectory Certificate Services notes
+Couple of notes on certificate properties
+
+* `MaxPath`
+    For Certificate Authority certificate this is Key Constraint. It sets how many levels below CA allowed to issue CA certificate. That is if the second level CA is allowed to issue certificate to other CA. That restricts number of CA levels.
+
+* `Subject Alternative Name`
+    In Microsoft SAN could be changed in two ways:
+    * Certificate Attributes. For this you issue command on CA that enables appending SAN to certificate request. This is not secure. Because it works on CA server scope for all certificate issued by that CA. And because the requested certificate is not the same as issued certificate. This works by geting certificate request in AD CS Web Enrollement page and fill in Attributes field what SAN you want.
+    * Request Properties. This is prefferebale. But this requires using 'policy inf' file. That way you create certificate request with included SAN. So no need to additinally add anything to that request later.
+
