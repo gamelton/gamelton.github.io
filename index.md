@@ -1,5 +1,8 @@
 # Sysadmin notes
 
+For feedback please [create an issue](https://github.com/gamelton/gamelton.github.io/issues)
+
+
 # LastPass Failed Logins
 Get LastPass failed logins from API
 
