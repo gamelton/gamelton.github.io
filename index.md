@@ -282,7 +282,7 @@ Couple of notes on certificate properties
     If private key could be exported.
     
 * `Subject`
-    For TLS certificated the 'CN=' part is optional, because they use SAN. So you could any test to it.
+    Because SSL/TLS does not require a Subject name when a SAN extension is included, the certificate Subject name can be empty. So you could any text to it.
     
 * `MachineKeySet`
     Save certificate to Machine certificate store
@@ -291,6 +291,15 @@ Couple of notes on certificate properties
     Most of the time you needd Key Exchange
     * `AT_KEYEXCHANGE (or KeySpec=1)` RSA key that can be used for signing and decryption
     * `AT_SIGNATURE (or KeySpec=2)` RSA signature only key
+    
+* `KeyUsage`
+    Restriction on how key could be used
+    * `CERT_DIGITAL_SIGNATURE_KEY_USAGE` for TLS certificate. The key is used with a Digital Signature Algorithm (DSA) to
+    * `CERT_KEY_ENCIPHERMENT_KEY_USAGE` for TLS certificate. The key is used for key transport. 
+    * 
+    * `CERT_KEY_CERT_SIGN_KEY_USAGE` for CA certificate
+    * `CERT_CRL_SIGN_KEY_USAGE` for CA certificate
+    * `CERT_OFFLINE_CRL_SIGN_KEY_USAGE` for CA certificate
     
 `BasicConstraintsExtension`
 
@@ -304,16 +313,19 @@ Couple of notes on certificate properties
 
     
 `Extensions`
-
-* `Subject Alternative Name`
-    In Microsoft SAN could be changed in two ways:
-    * Certificate Attributes. For this you issue command on CA that enables appending SAN to certificate request. This is not secure. Because it works on CA server scope for all certificate issued by that CA. And because the requested certificate is not the same as issued certificate. This works by geting certificate request in AD CS Web Enrollement page and fill in Attributes field what SAN you want.
-    * Request Properties. This is prefferebale. But this requires using 'policy inf' file. That way you create certificate request with included SAN. So no need to additinally add anything to that request later.
-    
+* `2.5.29.17 = "{text}"`
 * `_continue_` = "DNS=www.example.ord&"
 * `_continue_` = "IPAddress=1.1.1.1"
+Note the ampersand \(&\), it should be appended inside quotes to each SAN  except the last
+Note first text line should be in request
+    * `Subject Alternative Name`
+    In Microsoft SAN could be changed in two ways:
+        * Certificate Attributes. For this you issue command on CA that enables appending SAN to certificate request. This is not secure. Because it works on CA server scope for all certificate issued by that CA. And because the requested certificate is not the same as issued certificate. This works by geting certificate request in AD CS Web Enrollement page and fill in Attributes field what SAN you want.
+        * Request Properties. This is prefferebale. But this requires using 'policy inf' file. That way you create certificate request with included SAN. So no need to additinally add anything to that request later.
+    
 
-     Note the ampersand \(&\), it should be appended inside quotes to each SAN  except the last
+
+    
  
 Show Machine store Personal certificates
 
@@ -325,4 +337,11 @@ Create certificate request with policy file
 > certreq -new policyfile.inf myrequest.req
 
 
+**Warning!** Usanfe command to turn on SAN attribute for all certificates issued by CA
+
+> certutil -setreg policy\EditFlags +EDITF_ATTRIBUTESUBJECTALTNAME2
+
+Adding a SAN attribute to the RequestAttributes section of RequestPolicy.inf also requires that the CA is configured to accept SAN attributes by enabling EDITF_ATTRIBUTESUBJECTALTNAME2, which can put your PKI at risk for impersonation attacks.
+Whenever possible, specify SAN information by using certificate extensions instead of request attributes to avoid enabling EDITF_ATTRIBUTESUBJECTALTNAME2.
+Do not enable EDITF_ATTRIBUTESUBJECTALTNAME2 on an enterprise CA. 
 
