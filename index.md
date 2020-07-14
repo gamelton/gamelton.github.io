@@ -345,3 +345,13 @@ Adding a SAN attribute to the RequestAttributes section of RequestPolicy.inf als
 Whenever possible, specify SAN information by using certificate extensions instead of request attributes to avoid enabling EDITF_ATTRIBUTESUBJECTALTNAME2.
 Do not enable EDITF_ATTRIBUTESUBJECTALTNAME2 on an enterprise CA. 
 
+
+
+
+
+# IPv6 issues
+
+* Colon `(:)` characters in IPv6 addresses may conflict with the established syntax of resource identifiers, specifically port number.
+
+* With link-local addresses the address prefixes may still be identical for different interfaces, which makes the operating system unable to select an outgoing interface based on the information in the routing table (which is prefix-based). To resolve this in textual addresses, a interface index must be appended to the address, the two separated by a percent sign `(%)`. When used in uniform resource identifiers (URI), the use of the percent sign causes a syntax conflict.
+
