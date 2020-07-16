@@ -355,3 +355,8 @@ Do not enable EDITF_ATTRIBUTESUBJECTALTNAME2 on an enterprise CA.
 
 * With link-local addresses the address prefixes may still be identical for different interfaces, which makes the operating system unable to select an outgoing interface based on the information in the routing table (which is prefix-based). To resolve this in textual addresses, a interface index must be appended to the address, the two separated by a percent sign `(%)`. When used in uniform resource identifiers (URI), the use of the percent sign causes a syntax conflict.
 
+
+
+
+# curl download Java Cryptography Extension (JCE)
+> curl -q -L -C - -b "oraclelicense=accept-securebackup-cookie" -o jce_policy-8.zip -O http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip 
