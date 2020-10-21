@@ -360,3 +360,14 @@ Do not enable EDITF_ATTRIBUTESUBJECTALTNAME2 on an enterprise CA.
 
 # curl download Java Cryptography Extension (JCE)
 > curl -q -L -C - -b "oraclelicense=accept-securebackup-cookie" -o jce_policy-8.zip -O http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip 
+
+
+
+
+# UEFI booting
+Unlike the legacy PC BIOS, UEFI does not rely on boot sectors, defining instead a boot manager as part of the UEFI specification. When a computer is powered on, the boot manager checks the boot configuration and based on its settings, loads into memory and then executes the specified OS boot loader or operating system kernel. The boot configuration is defined by variables stored in NVRAM, including variables that indicate the file system paths to OS loaders or OS kernels. 
+OS boot loaders can be automatically detected by UEFI, which enables easy booting from removable devices such as USB flash drives. This automated detection relies on standardized file paths to the OS boot loader, with the path varying depending on the computer architecture. The format of the file path is defined as `<EFI_SYSTEM_PARTITION>\EFI\BOOT\BOOT<MACHINE_TYPE_SHORT_NAME>.EFI`
+Windows loader path
+`\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI`
+The EFI system partition, often abbreviated to ESP, is a data storage device partition that is used in computers adhering to the UEFI specification. Accessed by the UEFI firmware when a computer is powered up, it stores UEFI applications and the files these applications need to run, including operating system boot loaders.
+For use on ESPs, UEFI defines a specific version of the FAT file system, which is maintained as part of the UEFI specification and independently from the original FAT specification, encompassing a variant of the FAT32 file system on ESPs.
