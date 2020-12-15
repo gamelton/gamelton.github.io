@@ -371,3 +371,16 @@ Windows loader path
 `\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI`
 The EFI system partition, often abbreviated to ESP, is a data storage device partition that is used in computers adhering to the UEFI specification. Accessed by the UEFI firmware when a computer is powered up, it stores UEFI applications and the files these applications need to run, including operating system boot loaders.
 For use on ESPs, UEFI defines a specific version of the FAT file system, which is maintained as part of the UEFI specification and independently from the original FAT specification, encompassing a variant of the FAT32 file system on ESPs.
+
+
+
+# Windows Authentication Options
+When connecting to a Windows host, there are several different options that can be used when authenticating with an account.
+
+| Option      | Local Accounts |  Active Directory Accounts | Credential Delegation | HTTP Encryption |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| Basic       | Yes       | No       | No       | No       |
+| Certificate | Yes        | No        | No        | No        |
+| Kerberos    | No        | Yes        | Yes        | Yes        |
+| NTLM        | Yes        | Yes        | No        | Yes        |
+| CredSSP     | Yes        | Yes        | Yes        | Yes        | 
