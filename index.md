@@ -389,3 +389,8 @@ When connecting to a Windows host, there are several different options that can 
 
 # SMTP AUTH
 'SMTP AUTH' is often assumed to be synonymous with `SMTP with Basic Authentication` but it isn’t. SMTP AUTH (RFC 4954) in particular does not specify an authentication method but merely provides a simple protocol (SASL) bolted on to SMTP for incorporating such a method. So any enable/disable  setting switch entitled 'SMTP AUTH' must either also specify an associated authentication method or be assumed to apply to all methods (hence 'blocked at the protocol level').
+
+
+
+# PowerShell match operator
+The `-match` operator works in 2 different modes, depending on what's being matched. If it's a scalar (single value) it will return a boolean ($true or $false). If it's an array, it will return all members of the array that satisfy the match.
