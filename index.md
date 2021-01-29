@@ -396,19 +396,19 @@ When connecting to a Windows host, there are several different options that can 
 The `-match` operator works in 2 different modes, depending on what's being matched. If it's a scalar (single value) it will return a boolean ($true or $false). If it's an array, it will return all members of the array that satisfy the match.
 
 # Microsoft Graph API Authntication method flows
-| Topic                             | On behalf of a user   | On behalf of a user (public)   | With your own identity 
-:---:                              | :---:                                                    | :---:                                                      | :---:
-**Register the App**               | Required                                                 | Required                                                   | Required
-**Requires Admin Consent**         | Only on certain advanced permissions                     | Only on certain advanced permissions                       | Yes, for everything
-**App Permission Type**            | Delegated Permissions (on behalf of the user)            | Delegated Permissions (on behalf of the user)              | Application Permissions
-**Auth requirements**              | Client Id, Client Secret, Authorization Code             | Client Id, Authorization Code                              | Client Id, Client Secret
-**Authentication**                 | 2 step authentication with user consent                  | 2 step authentication with user consent                    | 1 step authentication
-**Auth Scopes**                    | Required                                                 | Required                                                   | None
-**Token Expiration**               | 60 Minutes without refresh token or 90 days             | 60 Minutes without refresh token or 90 days               | 60 Minutes
-**Login Expiration**               | Unlimited if there is a refresh token and as long as a re| Unlimited if there is a refresh token and as long as a refresh is done within the 90 days          | Unlimited
-**Resources**                      | Access the user resources, and any shared resources      | Access the user resources, and any shared resources        | All Azure AD users the app has access to
-**Microsoft Account Type**         | Any                                                      | Any                                                        | Not Allowed for Personal Accounts
-**Tenant ID Required**             | Defaults to "common"                                     | Defaults to "common"                                       | Required (can't be "common")
+| Topic                             | On behalf of a user   | On behalf of a user (public)   | With your own identity |
+|:---:                              | :---:                                                    | :---:                                                      | :---:|
+|**Register the App**               | Required                                                 | Required                                                   | Required|
+|**Requires Admin Consent**         | Only on certain advanced permissions                     | Only on certain advanced permissions                       | Yes, for everything|
+|**App Permission Type**            | Delegated Permissions (on behalf of the user)            | Delegated Permissions (on behalf of the user)              | Application Permissions|
+|**Auth requirements**              | Client Id, Client Secret, Authorization Code             | Client Id, Authorization Code                              | Client Id, Client Secret|
+|**Authentication**                 | 2 step authentication with user consent                  | 2 step authentication with user consent                    | 1 step authentication|
+|**Auth Scopes**                    | Required                                                 | Required                                                   | None|
+|**Token Expiration**               | 60 Minutes without refresh token or 90 days             | 60 Minutes without refresh token or 90 days               | 60 Minutes|
+|**Login Expiration**               | Unlimited if there is a refresh token and as long as a re| Unlimited if there is a refresh token and as long as a refresh is done within the 90 days          | Unlimited|
+|**Resources**                      | Access the user resources, and any shared resources      | Access the user resources, and any shared resources        | All Azure AD users the app has access to|
+|**Microsoft Account Type**         | Any                                                      | Any                                                        | Not Allowed for Personal Accounts|
+|**Tenant ID Required**             | Defaults to "common"                                     | Defaults to "common"                                       | Required (can't be "common")|
 
 # Office 365 concumed license Python
 [Similar to Powerhell access to Microsoft Graph API](https://gamelton.github.io/#microsoft-graph-api-rest-powershell). This is an example task of finding Office 365 license consumption. It's a bare minimum Python script that has hardcoded SKU ID of the license of interest. It outputs just one number of consumed licenses of that SKU. It uses specific URL `https://graph.microsoft.com/v1.0/subscribedSkus/{SKU-ID}` to get information on specific license SKU. It authenticates with your own identity this will use your own identity (the app identity). This oauth flow is called `client credentials grant flow`.
