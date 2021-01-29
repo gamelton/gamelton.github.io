@@ -418,6 +418,7 @@ Preparation:
    1. Get Application (Client) ID from Application properties
    1. Switch off `Allow public client flows`
    1. Under "Certificates & secrets", generate a new client secret. Set the expiration preferably to never.
+      
       Note: You should save it immediately as it won't be shown again
 
    1. Under Api Permissions add the application permissions for Microsoft Graph you want
@@ -426,17 +427,18 @@ Preparation:
 
       Note: You would need to press grant admin consent button to apply for the organization.
       
-
 1. Edit the script and supply your
-   1. `TENANT-ID` for Tenant (Authority)
+   1. `TENANT-ID` for Tenant (Authority) ID
    1. `APP-ID` and `APP-SECRET` for Application (Client) ID and secret
    1. `SKU-ID` for SKU license which you would like to get the consumption
-      You could get the list of all SKUs and look for the ID you want by listing all SKU on the tenant
-      > skusurl = 'https://graph.microsoft.com/v1.0/subscribedSkus'
-      
-      > skusrequest = requests.get(skusurl, headers=tokenheader)
-      
-      > skusrequest.text
+   
+   You could get the list of all SKUs and look for the ID you want by listing all SKU on the tenant
+   
+   ```python
+   skusurl = 'https://graph.microsoft.com/v1.0/subscribedSkus'
+   skusrequest = requests.get(skusurl, headers=tokenheader)
+   skusrequest.text
+   ```
 
 1. Make script executable
    > chmod +x get-office365-consumed-license.py
