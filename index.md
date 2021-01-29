@@ -397,7 +397,7 @@ The `-match` operator works in 2 different modes, depending on what's being matc
 
 
 # Office 365 concumed license Python
-[Similar to Powerhell access to Microsoft Graph API](microsoft-graph-api-rest-powershell). This is an example task of finding Office 365 license consumption. It's a bare minimum Python script that has hardcoded SKU ID of the license in interest. It uses specific URL `https://graph.microsoft.com/v1.0/subscribedSkus/{SKU-ID}` to get information on specific license SKU. It uses Authenticate with your own identity: This will use your own identity (the app identity). This oauth flow is called `client credentials grant flow`.
+[Similar to Powerhell access to Microsoft Graph API](microsoft-graph-api-rest-powershell). This is an example task of finding Office 365 license consumption. It's a bare minimum Python script that has hardcoded SKU ID of the license in interest. It outputs just one number of consumed licenses. It uses specific URL `https://graph.microsoft.com/v1.0/subscribedSkus/{SKU-ID}` to get information on specific license SKU. It uses Authenticate with your own identity: This will use your own identity (the app identity). This oauth flow is called `client credentials grant flow`.
 
 Prerequesities:
 1. Python 3
@@ -434,7 +434,10 @@ Preparation:
       > skusurl = 'https://graph.microsoft.com/v1.0/subscribedSkus'
       > skusrequest = requests.get(skusurl, headers=tokenheader)
       > skusrequest.text
-   
+
+1. Make script executable
+   > chmod +x get-office365-consumed-license.py
+
 [Repository](https://github.com/gamelton/Microsoft-Graph-API-REST-Python)
 
 
