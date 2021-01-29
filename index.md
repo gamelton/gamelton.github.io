@@ -394,3 +394,8 @@ When connecting to a Windows host, there are several different options that can 
 
 # PowerShell match operator
 The `-match` operator works in 2 different modes, depending on what's being matched. If it's a scalar (single value) it will return a boolean ($true or $false). If it's an array, it will return all members of the array that satisfy the match.
+
+
+# Office 365 concumed license Python
+[Similar to Powerhell access to Microsoft Graph API](microsoft-graph-api-rest-powershell). This is an example task of finding Office 365 license consumption. It's a bare minimum Python script that has hardcoded SKU ID of the license in interest.
+
