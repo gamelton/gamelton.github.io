@@ -396,6 +396,22 @@ When connecting to a Windows host, there are several different options that can 
 The `-match` operator works in 2 different modes, depending on what's being matched. If it's a scalar (single value) it will return a boolean ($true or $false). If it's an array, it will return all members of the array that satisfy the match.
 
 # Microsoft Graph API Authntication method flows
+You can only authenticate using oauth athentication as Microsoft deprecated basic auth on November 1st 2018.
+
+There are currently three authentication methods:
+
+- [Authenticate on behalf of a user](https://docs.microsoft.com/en-us/graph/auth-v2-user?context=graph%2Fapi%2F1.0&view=graph-rest-1.0): 
+Any user will give consent to the app to access it's resources. 
+This oauth flow is called **authorization code grant flow**. This is the default authentication method used by this library.
+- [Authenticate on behalf of a user (public)](https://docs.microsoft.com/en-us/graph/auth-v2-user?context=graph%2Fapi%2F1.0&view=graph-rest-1.0):
+Same as the former but for public apps where the client secret can't be secured. Client secret is not required.
+- [Authenticate with your own identity](https://docs.microsoft.com/en-us/graph/auth-v2-service?context=graph%2Fapi%2F1.0&view=graph-rest-1.0): 
+This will use your own identity (the app identity). This oauth flow is called **client credentials grant flow**. 
+
+    > 'Authenticate with your own identity' is not an allowed method for **Microsoft Personal accounts**. 
+
+
+
 | Topic                      | On behalf of a user                                      | On behalf of a user (public)                               | With your own identity |
 | ---------------------------| -------------------------------------------------------- | ---------------------------------------------------------- |------------------------|
 |**Register the App**        | Required                                                 | Required                                                   | Required|
