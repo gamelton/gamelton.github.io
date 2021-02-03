@@ -476,3 +476,19 @@ Preparation:
 [Repository](https://github.com/gamelton/Microsoft-Graph-API-REST-Python)
 
 
+# MS SQL login and user account
+
+**Authentication** is the process of proving the user is who they claim to be. A user connects to a database using a user account.
+When a user attempts to connect to a database, they provide a user account and authentication information. The user is authenticated using one of the following two authentication methods:
+
+- SQL authentication.
+
+  With this authentication method, the user submits a user account name and associated password to establish a connection. This password is stored in the master database for user accounts linked to a login or stored in the database containing the user accounts *not* linked to a login.
+- Azure Active Directory Authentication
+
+  With this authentication method, the user submits a user account name and requests that the service use the credential information stored in Azure Active Directory (Azure AD).
+
+**Logins and users**: A user account in a database can be associated with a login that is stored in the master database or can be a user name that is stored in an individual database.
+
+- A **login** is an individual account in the master database, to which a user account in one or more databases can be linked. With a login, the credential information for the user account is stored with the login.
+- A **user account** is an individual account in any database that may be, but does not have to be, linked to a login. With a user account that is not linked to a login, the credential information is stored with the user account.
