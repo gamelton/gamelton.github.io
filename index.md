@@ -578,5 +578,21 @@ Reset-LDAP-Password.ps1
    After run script user `test.changed.user2` has password P@ssword2.
 
 
-
 [Repository](https://github.com/gamelton/Powershell-Change-Domain-Password-LDAP)
+
+
+# Powershell secure string cleartext
+Couple of examples where you could get clear text for Secure String in Powershell
+
+```powershell
+$Credentials = Get-Credential -Message "Enter domain, user name and old password"`
+$Credentials.GetNetworkCredential().password
+```
+
+```powershell
+$Password = Read-Host -AsSecureString -Prompt 'Enter new password'
+[System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
+```
+
+
+
