@@ -568,5 +568,17 @@ $Password = Read-Host -AsSecureString -Prompt 'Enter new password'
 [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
 ```
 
+# Web shell attack mitigation practicies
+Web shells are malicious files or code snippets that attackers put on compromised web servers to perform arbitrary, attacker-specified actions on the system or return requested data to which the system has access  
+- Deploy the latest security updates as soon as they become available  
+- Implement proper segmentation of your perimeter network, such that a compromised web server does not lead to the compromise of the enterprise network  
+- Users should only be able to upload files in directories that can be scanned by antivirus and configured to not allow server-side scripting or execution  
+- Audit and review logs from web servers  
+- Use firewall to prevent command-and-control server communication among endpoints whenever possible, limiting lateral movement  
+- Check your perimeter firewall and proxy to restrict unnecessary access to services, including access to services through non-standard ports  
+- Limit the use of accounts with local or domain admin level privileges  
+- Check server log for requests from IP address outside the normal subnet  
+- Check log forunexpected network flows. F.x. web server makes web requests to internal network nodes. F.x. non-web server node (e.g., a network device) suddenly is responding to a web requests from outside the network  
+- Check for process run by web server. F.x. web server usually don't run ping. Windows processes  
 
 
