@@ -591,7 +591,7 @@ To connect to the Graylog REST API with a web browser, just add ``api/api-browse
 For example if your Graylog REST API is listening on ``http://192.168.178.26:9000/api/``, the API browser will be available at ``http://192.168.178.26:9000/api/api-browser/``.  
 After providing the credentials (username and password), you can browse all available HTTP resources of the Graylog REST API.  
 Find ``Search`` and ``/views/search/sync`` put JSON query in Search box and push `Try it out` button.  
-Example query for successfull logins
+**Example query for successfull logins**  
 - EventID:4624  
 - time from 2021-03-03 07:00:00.000  
 - time to 2021-03-03 07:15:00.000  
@@ -633,11 +633,20 @@ Example query for successfull logins
 }
 ```
 ## API search in Powershell
-For more advaced search we store query body in file. And run Powershell command to access it.  
-Notes to command  
+For more advaced search we store query body in file. And run Powershell command `Invoke-RestMethod`.  
+Notes to body file    
 - `query_string` - this is query you normailly put in Search box in GUI. It needs backslash for escape double quotes. We filter internal IPs because we are not interested in them  
-- `row_groups` - provides field name we group on. And how many results returned (100)
-- 
+- `row_groups` - provides field name we group on. And how many results returned (100)  
+You could see JSON body file in [Repository](https://github.com/gamelton/graylog-api-unique-field-value)  
+
+Notes to command  
+- Basic authentication send credentials in cleartext  
+- Replace `user` and `password` with your Graylog user  
+- You could create access tokens which can be used for authentication instead. Navigate to the users configuration menu ``System /  Authentication`` for that  
+- Change `192.168.178.26` to Graylog IP address  
+- Chnage `C:\Users\username\graylog=body-request.json` to your JSON body file  
+- We get country and organization from `ip-api` services that throttle requests. So we workaround with `Start-Sleep -s 4` to pause. Expect this command to run long time  
+You could see Powershell script file in [Repository](https://github.com/gamelton/graylog-api-unique-field-value)  
 
 
 
