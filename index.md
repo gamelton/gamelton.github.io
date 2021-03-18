@@ -582,3 +582,58 @@ Web shells are malicious files or code snippets that attackers put on compromise
 - Check for process run by web server. F.x. web server usually don't run ping. Windows processes  
 
 
+# Graylog API get unique field value
+Graylog is a tool to collect and centrally store logs. It could be used by web GUI to search for logs. It uses Elasticsearch and thus support Lucenene query language. It's case sensitive. But for advanced queries it might miss some functionality. That's where Graylog API comes into place. Since Graylog version 4 API was change, this example uses this version. It provides first how to run search in API through web GUI. Second, how to run search in API through Powershell.  
+We will be looking in Windows log. For `An account was successfully logged on` event. For specific period of time. And then extract unique `IpAddress` and count how many times it was used for each IP address.
+
+## API search in web UI
+To connect to the Graylog REST API with a web browser, just add ``api/api-browser`` to your current ``http_publish_uri`` setting or use the **API browser** button on the nodes overview page (*System / Nodes* in the web interface).  
+For example if your Graylog REST API is listening on ``http://192.168.178.26:9000/api/``, the API browser will be available at ``http://192.168.178.26:9000/api/api-browser/``.  
+After providing the credentials (username and password), you can browse all available HTTP resources of the Graylog REST API.  
+Find ``Search`` and ``/views/search/sync`` put JSON query in Search box.  
+Example query
+- EventID:4624  
+- time from 2021-03-03 07:00:00.000  
+- time to 2021-03-03 07:15:00.000  
+
+```json
+{
+  "queries": [
+    {
+      "id": "qid",
+      "timerange": {
+          "type": "absolute",
+          "from": "2021-03-03T07:00:00.000Z",
+          "to": "2021-03-03T07:15:00.000Z"
+       },
+      "query": {
+        "type": "elasticsearch",
+        "query_string": "EventID:4624"
+      },
+      "search_types": [{
+            "timerange": null,
+            "query": null,
+            "streams": [],
+            "id": "stid",
+            "name": null,
+            "limit": 150,
+            "offset": 0,
+            "sort": [
+              {
+                "field": "timestamp",
+                "order": "DESC"
+              }
+            ],
+            "decorators": [],
+            "type": "messages",
+            "filter": null
+          }]
+    }
+  ]
+}
+```
+
+
+
+
+
