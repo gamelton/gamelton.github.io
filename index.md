@@ -646,6 +646,7 @@ Notes to command
 - Change `192.168.178.26` to your Graylog IP address  
 - Chnage `C:\Users\username\graylog=body-request.json` to your JSON body file  
 - Script connects to `ip-api` service to get country and organization info. Free plan throttles requests. So workaround is `Start-Sleep -s 4` to pause on each IP address. Expect this command to run long time  
+
 You could see Powershell script file in [Repository](https://github.com/gamelton/graylog-api-unique-field-value)  
 
 
@@ -660,6 +661,8 @@ Notes to command
 - `username` and `password` are base64 encoded  
 - Replace `kaspersky-server-address` with your Kaspersky server addresss  
 - You run script with argument key id. That argument then used in `licenseid` variable  
+   You could gey key number from Kaspersky Security Center MMC
 - Output number of licenses used on the key  
+
 You could see Python script file in [Repository](https://github.com/gamelton/kaspersky-open-api-python)  
 
