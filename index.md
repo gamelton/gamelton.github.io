@@ -680,6 +680,7 @@ This example demonstrates:
 - Create JSON object  
 - Send TCP stream with header and data to server  
 - Get reply from the server  
+
 You could create a Scheduled Task to run on regular basis and put performance counter value to Zabbix server.  
 
 Notes to command  
