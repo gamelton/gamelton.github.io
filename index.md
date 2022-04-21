@@ -689,3 +689,25 @@ Notes to command
 - Create trapper item types with keys: `disk.time`, `disk.wait`, `disk.queue`, `disk.free`, `proc.time`, `mem.free`, `paging.use`, `proc.queue` on Zabbix server host. This is critical that Zabbix server has host and items configured before sending this information  
 
 You could see Powershell script file in [Repository](https://github.com/gamelton/zabbix-powershell-trapper)  
+
+
+
+# Expand disk remotely Powershell
+Prerequisites:  
+- Windows Remote Management service is running (WinRM)  
+- Powershell Remote port 5985 is open  
+- Free space is next to C drive 
+```powershell
+ # Allow connect to non-trusted mahcine
+ Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
+ # Use credentials that have admin rights on machine
+ $creds = Get-Credential
+ # Test TCP port is open
+ Test-NetConnection vdi-berbot.kvk.kraftvaerk.com -port 5985
+ # Extend partition
+ $ScriptBlock = {
+ $MaxSize = (Get-PartitionSupportedSize -DriveLetter C).Sizemax
+ Resize-Partition -DriveLetter C -Size $MaxSize
+ }
+ Invoke-Command -ComputerName "vdi-berbot.kvk.kraftvaerk.com" -Credential $creds -ScriptBlock $ScriptBlock
+ ```
