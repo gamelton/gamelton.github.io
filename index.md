@@ -713,4 +713,18 @@ Prerequisites:
  Invoke-Command -ComputerName "hostname.domainname" -Credential $creds -ScriptBlock $ScriptBlock
  ```
 
-.
+# Ansible bootstrapping Windows through Ansible
+**What**: `psexec` - new module to run commands on a remote Windows host without WinRM  
+**Why**: Bootstrapping Windows systems to be used with Ansible usually requires:  
+- Running a script on each Windows system beforehand (upgrade WMF and/or enable WinRM service)  
+- Run a script automatically as part of creating/provisioning that system (VMware, container, MDT, ...)  
+  
+It would be nice if we could automatically bootstrap Ansible, or use Ansible without the need for enabling WinRM beforehand.  
+- Using `win_psexec` we can already run arbitrary stuff on Windows systems using username/password, but this requires at least one Windows system to be used as a jumphost for psexec.exe  
+- Currently `win_psexec` cannot transfer a script as part of its execution, while psexec.exe allows this  
+  
+Ansible now have a few ways of bootstrapping Windows through Ansible. These include  
+- The `psexec` module to run over SMB  
+- Various provider specific connection plugins like `vmware_tools` or `aws_ssm`  
+
+
