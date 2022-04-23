@@ -711,3 +711,5 @@ Prerequisites:
  }
  Invoke-Command -ComputerName "vdi-berbot.kvk.kraftvaerk.com" -Credential $creds -ScriptBlock $ScriptBlock
  ```
+
+.
