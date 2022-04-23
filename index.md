@@ -697,19 +697,20 @@ Prerequisites:
 - Windows Remote Management service is running (WinRM)  
 - Powershell Remote port 5985 is open  
 - Free space is next to C drive 
+  
 ```powershell
  # Allow connect to non-trusted mahcine
  Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
  # Use credentials that have admin rights on machine
  $creds = Get-Credential
  # Test TCP port is open
- Test-NetConnection vdi-berbot.kvk.kraftvaerk.com -port 5985
+ Test-NetConnection hostname.domainname -port 5985
  # Extend partition
  $ScriptBlock = {
  $MaxSize = (Get-PartitionSupportedSize -DriveLetter C).Sizemax
  Resize-Partition -DriveLetter C -Size $MaxSize
  }
- Invoke-Command -ComputerName "vdi-berbot.kvk.kraftvaerk.com" -Credential $creds -ScriptBlock $ScriptBlock
+ Invoke-Command -ComputerName "hostname.domainname" -Credential $creds -ScriptBlock $ScriptBlock
  ```
 
 .
