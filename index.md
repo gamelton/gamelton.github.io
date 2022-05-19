@@ -728,3 +728,21 @@ Ansible now have a few ways of bootstrapping Windows through Ansible. These incl
 - Various provider specific connection plugins like `vmware_tools` or `aws_ssm`  
 
 
+# Get MFA OTP code with Powershell
+**Why**: automate script that uses account with MFA enabled  
+Since MFA has [a standard](https://medium.com/@nicola88/two-factor-authentication-with-totp-ccc5f828b6df) for generating one-time codes there is a fairly simple way to get it in unattended script  
+  
+Preparations:  
+- On your first account setup for MFA authenticator app you're presented with QR code  
+- Instead of scanning the code with your camera choose option 'Can't scan image?'  
+- Make a note of the 'Secret key' which is displayed  
+
+Dowload jonfriesen powershell script https://gist.github.com/jonfriesen/234c7471c3e3199f97d5
+
+Then you could run the script to get TOTP code. Just remember that code is time-based, so it expires every 30 seconds by default.  
+```powershell
+Get-Otp -SECRET 'secretkeystring' -WINDOW 30 -LENGTH 6
+```
+
+
+
