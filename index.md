@@ -737,12 +737,14 @@ Preparations:
 - Instead of scanning the code with your camera choose option 'Can't scan image?'  
 - Make a note of the 'Secret key' which is displayed  
 
-Dowload jonfriesen powershell script https://gist.github.com/jonfriesen/234c7471c3e3199f97d5
+Dowload jonfriesen powershell scriptd5
 
 Then you could run the script to get TOTP code. Just remember that code is time-based, so it expires every 30 seconds by default.  
 ```powershell
 Get-Otp -SECRET 'secretkeystring' -WINDOW 30 -LENGTH 6
 ```
+
+[Repository](https://github.com/gamelton/powershell-totp/)
 
 
 
