@@ -748,3 +748,8 @@ Get-Otp -SECRET 'secretkeystring' -WINDOW 30 -LENGTH 6
 
 
 
+# GPT advantages over MBR
+- it has a backup partition table  
+- it has no ridiculous limit for primary partitions, it allows for up to 128 partitions without having to extend  
+- it also stores cyclic redundancy check (CRC) values to check that its data is intact  
+- as you mentioned, it supports large drives, the maximum size is 8 ZiB (2^64 sectors × 2^9 bytes per sector)  
