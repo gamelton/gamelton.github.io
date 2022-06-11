@@ -753,3 +753,16 @@ Get-Otp -SECRET 'secretkeystring' -WINDOW 30 -LENGTH 6
 - it has no ridiculous limit for primary partitions, it allows for up to 128 partitions without having to extend  
 - it also stores cyclic redundancy check (CRC) values to check that its data is intact  
 - as you mentioned, it supports large drives, the maximum size is 8 ZiB (2^64 sectors × 2^9 bytes per sector)  
+
+# Powershell vs Bash true value
+Bash differs from Powershell on numerical representation of `true` and `false` values. So if there is a condintion met then return code is `0` in Bash.  
+```
+true; echo $?
+0
+```
+Where is in Powershell `true`value is `1`  
+```
+$true -eq 1
+True
+```
+
