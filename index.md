@@ -766,3 +766,29 @@ $true -eq 1
 True
 ```
 
+# Powershell catch specific exception  
+First you find last exception name
+   ```
+   $Error[0].Exception.GetType().FullName
+   ```
+
+Then you add it to catch (should be above general exception)
+   ```
+   try {
+      # Do something
+   }
+   catch [SpecificExceptionGoesHere] { 
+      # Do something else if the above fails }
+   catch {
+      # General exception
+   }
+   ```
+* Example if member is in local group
+   ```
+   catch [Microsoft.PowerShell.Commands.MemberExistsException]
+   ```
+* Example cmdlet does not exist
+   ```
+   catch [Management.Automation.RuntimeException]
+   ```
+  
