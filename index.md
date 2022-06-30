@@ -791,4 +791,19 @@ Then you add it to catch (should be above general exception)
    ```
    catch [Management.Automation.RuntimeException]
    ```
+
+
+# Linux namespaces  
+show namespaces `lsns`  
+* mount namespace (list of mount points seen by the process)  
+* UTS namespace (hostname and the NIS omain name)  
+* IPC namespace (System V IPC identifiers and  POSIX  message queue ilesystem)  
+* network namespace (network devices, IPv4 and IPv6 protocol stacks, IP routing  tables,  firewall  rules etc.)  
+* PID namespace (process ID number)  
+* user namespace (user IDs and group IDs)  
+* cgroup namespace (cgroup filesystem)  
+* time namespace (system clocks)  
   
+
+
+
