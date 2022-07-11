@@ -804,6 +804,18 @@ show namespaces `lsns`
 * cgroup namespace (cgroup filesystem)  
 * time namespace (system clocks)  
   
+  
+  
+# Loopback interface  
 
+* **Loopack on host**  
+   The Internet Protocol (IP) specifies a loopback network with the (IPv4) address 127.0.0.0/8. Most IP implementations support a loopback interface to represent the loopback facility. Any traffic that a computer program sends on the loopback network is addressed to the same computer. The most commonly used IP address on the loopback network is 127.0.0.1 for IPv4 and ::1 for IPv6. The standard domain name for the address is localhost.  
 
+* **Looback on network device (router)**  
+   The loopback interface is used to identify the device. While any interface address can be used to determine if the device is online, the loopback address is the preferred method. Whereas interfaces might be removed or addresses changed based on network topology changes, the loopback address never changes.  
+   - Link-State routing protocols like OSPF/IS-IS, or cluster identifier for iBGP  
+   - Endpoints for systems with multiple tunnels  
+   - Any situation where a layer-3 failover solution is required  
+   - Load balancing with ECMP (equal-cost multipath routing)  
+   - Configuring additional addresses on system which are being routed to the system via a physical interface from an upstream internet/cloud/hosting provider.  
 
