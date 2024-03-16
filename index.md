@@ -1,6 +1,6 @@
 # Sysadmin notes
 
-For feedback please [create an issue](https://github.com/gamelton/gamelton.github.io/issues)
+You could write me to [the email](mailto:gamelton@tuta.io).
 
 
 # LastPass Failed Logins
